@@ -1,0 +1,1 @@
+tiny js lib created just for lulz
