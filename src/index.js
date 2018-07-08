@@ -1,1 +1,23 @@
-console.log('privet');
+import engine from './engine';
+import renderDOM from './engine';
+
+/**
+ * @IT starts the library
+ * @param {object} appMap object with components links
+ * @param {object} functionsMap object with functions map
+ * @return {object} object with library open functions
+ */
+function main(appMap, functionsMap) {
+  /**
+   * @IT init render cycle
+   */
+  function render() {
+    const components = engine(appMap, functionsMap);
+    renderDOM(components);
+  }
+  return {
+    render: render,
+  };
+}
+
+export default main;
