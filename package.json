@@ -1,4 +1,10 @@
 {
+  "name": "silkwormjs",
+  "version": "0.26.18",
+  "description": "tiny js ui framework",
+  "main": "dist/silkworm.js",
+  "author": "idclev31",
+  "license": "MIT",
   "dependencies": {
     "eslint": "^4.19.1",
     "eslint-config-google": "^0.9.1"

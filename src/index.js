@@ -7,7 +7,7 @@ import renderDOM from './engine';
  * @param {object} functionsMap object with functions map
  * @return {object} object with library open functions
  */
-function main(appMap, functionsMap) {
+function silkworm(appMap, functionsMap) {
   /**
    * @IT init render cycle
    */
@@ -18,6 +18,7 @@ function main(appMap, functionsMap) {
   return {
     render: render,
   };
-}
+};
 
-export default main;
+export default silkworm;
+
