@@ -1,5 +1,5 @@
 import engine from './engine';
-import renderDOM from './engine';
+import renderDOM from './DOM/DOM';
 
 /**
  * @IT starts the library
@@ -12,9 +12,11 @@ function silkworm(appMap, functionsMap) {
    * @IT init render cycle
    */
   function render() {
+    /* here must be some kind of virtual dom complete object */
     const components = engine(appMap, functionsMap);
     renderDOM(components);
   }
+
   return {
     render: render,
   };
