@@ -1,12 +1,11 @@
 function test3() {
-  console.log('test3')
-  let innerElement = document.createElement('div')
-  innerElement.className = 'template'
-
-  let outerElement = document.createElement('div')
-  outerElement.appendChild(innerElement)
-  
-  return outerElement
+	return {
+		type: 'p',
+		class: 'test3',
+		content: [
+			'ТЕСТ3'	
+		]
+	}
 }
 
 export default test3

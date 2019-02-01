@@ -3,6 +3,6 @@
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
-    "max-len": 5,
+    "max-len": 5
   }
 }

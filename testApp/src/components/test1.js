@@ -1,12 +1,12 @@
 function test1() {
   console.log('test1')
-  let innerElement = document.createElement('div')
-  innerElement.className = 'template'
-
-  let outerElement = document.createElement('div')
-  outerElement.appendChild(innerElement)
-  
-  return outerElement
+  return {
+		type: 'div',
+		class: 'test1',
+		content: [
+			'$CHILDREN$'	
+		]
+	}
 }
 
 export default test1
