@@ -6,22 +6,50 @@
  */
 function engine(appMap = {}, componentsMap = {}) {
   /**
-   * @It must get over appMap and creator func
+   * @It must accumulate components and create virtualDOM object
    * @return {undefined} nothing
    * @param {object} map application map config
    * @param {string} nodeId id of root component template
   */
-  function selector(map, nodeId) {
-    
+  function accumulate(map, nodeId) {
+    const resultObject = createComponent(nodeId)
+    if(typeof resultObject === 'number'){
+      return getComponent(map[resultObject])
+    } else {
+      resultObject.content.forEach((item, i) => {
+        if(item === '$CHILDREN$'){
+          if(typeof map === 'string'){
+            resultObject.content[i] = createComponent(map)
+          } else {
+            resultObject.content[i] = getComponent(map[nodeId])
+          }
+        }
+      })
+    }
+    return resultObject
   }
 
   /**
-   * @It must check object that component returns
+   * @It must get component by its children type
    * @param {object} component object
    * @return {undefined} nothing
   */
-  function checkComponent(component) {
+  function getComponent(component) {
+    if(typeof component === 'string'){
+      return createComponent(component)
+    } else if (Array.isArray(component)){
+      return component.map((item) => {
+        return getComponent(item)
+      })
+    } else if (typeof component === 'object') {
+      for(let key in component){
+        return accumulate(component[key], key)
+      }
+    }
+  }
 
+  function createComponent(id) {
+    return componentsMap[id]()
   }
 
   /**
@@ -29,10 +57,12 @@ function engine(appMap = {}, componentsMap = {}) {
    * @return {undefined} nothing
   */
   function render() {
-
+    let virtualDOM = {}
+    virtualDOM.root = accumulate(appMap, 'root')
+    return virtualDOM
   }
 
-  if (componentsMap.root) {
+  if (appMap.root) {
     return render();
   } else {
     throw new Error('There is no root in app map');

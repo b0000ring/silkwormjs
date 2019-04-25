@@ -1,5 +1,5 @@
 function test4() {
-  console.log('test4')
+//   console.log('test4')
  	return {
 		type: 'div',
 		class: 'test4',
