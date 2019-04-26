@@ -1,5 +1,5 @@
-const path = require('path');
-
+const path = require('path')
+const webpack = require('webpack')
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -10,4 +10,8 @@ module.exports = {
   },
   watch: true,
   mode: 'development',
+  devtool: 'eval-source-map',
+  plugins: [
+    new webpack.SourceMapDevToolPlugin({})
+  ]
 };

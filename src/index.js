@@ -13,7 +13,7 @@ function silkworm(appMap, functionsMap) {
    */
   function render() {
     const components = engine(appMap, functionsMap);
-    // renderDOM(components);
+    renderDOM(components);
   }
 
   return {

@@ -1,10 +1,11 @@
 function root() {
-  // console.log('root')
   return {
     type: 'div',
-    class: 'root',
+    attributes: {
+      class: 'root',
+    },
     content: [
-        '$CHILDREN$'	
+      '$CHILDREN$'	
     ]
   }
 }

@@ -1,7 +1,9 @@
 function test3() {
 	return {
-		type: 'p',
-		class: 'test3',
+    type: 'p',
+    attributes: {
+      class: 'test3',
+    },
 		content: [
 			'ТЕСТ3'	
 		]

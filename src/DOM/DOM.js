@@ -1,35 +1,50 @@
-/**
- * @IT must compare nodes of virtual DOM and check them for changes
- */
-export function compare() {
+import virtualDOM from './VirtualDOM'
 
+/**
+ * @It must start real DOM update cycle
+*/
+function update(updateable) {
+  updateable.forEach((item) => {
+    inject(item.parent, convert(item.object))
+  })
 }
 
 /**
  * @IT converts js components objects to html objects
  */
-export function convert() {
-
-}
-
-/**
- * @It must find and call component by node id, and pass it to converter
-*/
-export function create() {
-
+function convert(object) {
+  // WRONG LOGIC!!!
+  console.log(object)
+  let parent = document.createElement(object.type)
+  if(Array.isArray(object.content)){
+    object.content.forEach((item) => {
+      if(typeof item === 'object'){
+        parent.innerHTML = convert(item)
+      } else {
+        parent.innerHTML = item
+      }
+    })
+  } else {
+    parent.innerHTML = object.content
+  }
+  return parent
 }
 
 /**
  * @IT must inject virtual DOM nodes to real DOM
  */
-export function inject() {
-
+function inject(nodeId, children) {
+  let parent = document.getElementById(nodeId)
+  console.log(children)
+  parent.innerHTML = children 
 }
 
 /**
  * @IT init DOM render cycle
  */
-export function renderDOM() {
-
+export default function renderDOM(newVirtualDOM) {
+  console.log(virtualDOM)
+  let differences = virtualDOM.save(newVirtualDOM)
+  update(differences)
 }
 

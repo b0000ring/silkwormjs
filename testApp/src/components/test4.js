@@ -1,8 +1,9 @@
 function test4() {
-//   console.log('test4')
  	return {
 		type: 'div',
-		class: 'test4',
+    attributes: {
+      class: 'test4',
+    },
 		content: [
 			'ТЕСТ4',
 			{
@@ -12,7 +13,6 @@ function test4() {
 					'ВЛОЖЕННЫЙ КОМПОНЕНТ'
 				]
 			}
-			
 		]
 	}
 }

@@ -13,6 +13,7 @@ function engine(appMap = {}, componentsMap = {}) {
   */
   function accumulate(map, nodeId) {
     const resultObject = createComponent(nodeId)
+    // if true, this is controller
     if(typeof resultObject === 'number'){
       return getComponent(map[resultObject])
     } else {
@@ -49,21 +50,15 @@ function engine(appMap = {}, componentsMap = {}) {
   }
 
   function createComponent(id) {
-    return componentsMap[id]()
-  }
-
-  /**
-   * @It must start over app map render cycle
-   * @return {undefined} nothing
-  */
-  function render() {
-    let virtualDOM = {}
-    virtualDOM.root = accumulate(appMap, 'root')
-    return virtualDOM
+    try{
+      return componentsMap[id]()
+    } catch (e) {
+      throw new Error('Try to call nonexistent component ' + id)
+    }
   }
 
   if (appMap.root) {
-    return render();
+    return accumulate(appMap, 'root')
   } else {
     throw new Error('There is no root in app map');
   }
